@@ -50,8 +50,8 @@ player = Player(plane_img, player_rect, player_pos)
 bullet_rect = pygame.Rect(1004, 987, 9, 21)
 bullet_img = plane_img.subsurface(bullet_rect)
 
-# 定义敌机对象使用的surface相关参数
-enemy1_rect = pygame.Rect(534, 612, 57, 43)
+# 定义敌机对象使用的surface相关参数  ///Corte perfecto: 539, 614, 49, 35
+enemy1_rect = pygame.Rect(537, 614, 53, 35)
 enemy1_img = plane_img.subsurface(enemy1_rect)
 enemy1_down_imgs = []
 enemy1_down_imgs.append(plane_img.subsurface(pygame.Rect(267, 347, 57, 43)))
