@@ -73,6 +73,8 @@ shoot_frequency = 0
 enemy_frequency = 0
 powerup_frequency = 0
 
+is_double_fire = False
+
 player_down_index = 16
 
 score = 0
@@ -136,13 +138,15 @@ while running:
         enemy_frequency_setter()
 
     # Frecuencia de aparición de power ups
-    powerup_frequency_setter()
+    if not is_double_fire:
+        powerup_frequency_setter()
 
     # Mover power ups, colisión y eliminar al salir de la pantalla
     for pup in powerups:
         pup.move()
         if pygame.sprite.collide_circle(pup, player):
             powerups.remove(pup)
+            is_double_fire = True
         if pup.rect.top > SCREEN_HEIGHT:
             powerups.remove(pup)
 
