@@ -122,7 +122,7 @@ def powerup_frequency_setter(frequency = 400):
 while running:
     # 控制游戏最大帧率为60
     clock.tick(45)
-
+    
     # 控制发射子弹频率,并发射子弹  //Frecuencia de disparo, valor predeterminado: 15
     if is_double_fire:
         shoot_frequency_setter(6)
@@ -134,13 +134,10 @@ while running:
         shoot_frequency_setter()
 
     # 生成敌机 //Velocidad de aparición de enemigos: 50, 33, 25
-    if (score >= 10000):
-        if (score >= 30000):
-            if (score >= 55000):
-                if (score >= 115000):
-                    enemy_frequency_setter(16)
-                else:
-                    enemy_frequency_setter(20)
+    if (score >= 9000):
+        if (score >= 28000):
+            if (score >= 52000):
+                enemy_frequency_setter(20)
             else:
                 enemy_frequency_setter(25)
         else:
@@ -170,6 +167,8 @@ while running:
 
     # 移动敌机，若超出窗口范围则删除
     for enemy in enemies1:
+        if (score >= 75000):
+            enemy.increase_Speed()
         enemy.move()
         # 判断玩家是否被击中
         if pygame.sprite.collide_circle(enemy, player):
