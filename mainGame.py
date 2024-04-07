@@ -37,12 +37,12 @@ plane_img = pygame.image.load(filename)
 
 # 设置玩家相关参数
 player_rect = []
-player_rect.append(pygame.Rect(0, 99, 102, 126))        # 玩家精灵图片区域
-player_rect.append(pygame.Rect(165, 360, 102, 126))
-player_rect.append(pygame.Rect(165, 234, 102, 126))     # 玩家爆炸精灵图片区域
-player_rect.append(pygame.Rect(330, 624, 102, 126))
-player_rect.append(pygame.Rect(330, 498, 102, 126))
-player_rect.append(pygame.Rect(432, 624, 102, 126))
+player_rect.append(pygame.Rect(2, 99, 99, 136))        # 玩家精灵图片区域
+player_rect.append(pygame.Rect(167, 360, 99, 126))
+player_rect.append(pygame.Rect(167, 234, 99, 126))     # 玩家爆炸精灵图片区域
+player_rect.append(pygame.Rect(333, 627, 99, 126))
+player_rect.append(pygame.Rect(333, 501, 99, 126))
+player_rect.append(pygame.Rect(432, 624, 99, 106))
 player_pos = [200, 600]
 player = Player(plane_img, player_rect, player_pos)
 
@@ -63,6 +63,9 @@ enemies1 = pygame.sprite.Group()
 
 # 存储被击毁的飞机，用来渲染击毁精灵动画
 enemies_down = pygame.sprite.Group()
+
+# PowerUps
+
 
 shoot_frequency = 0
 enemy_frequency = 0
@@ -94,6 +97,11 @@ def enemy_frequency_setter(frequency = 50):
     enemy_frequency += 1
     if enemy_frequency >= 100:
         enemy_frequency = 0
+
+    # if player.is_hit:
+    #     if key_pressed[K_SPACE]:
+    #         player.is_hit = False
+    #         running = True
 
 while running:
     # 控制游戏最大帧率为60
