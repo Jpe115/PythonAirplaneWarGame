@@ -67,9 +67,11 @@ enemies_down = pygame.sprite.Group()
 # PowerUps
 powerup1_rect = pygame.Rect(268, 399, 56, 85)
 powerup1_img = plane_img.subsurface(powerup1_rect)
+powerups = pygame.sprite.Group()
 
 shoot_frequency = 0
 enemy_frequency = 0
+powerup_frequency = 0
 
 player_down_index = 16
 
@@ -99,6 +101,16 @@ def enemy_frequency_setter(frequency = 50):
     if enemy_frequency >= 100:
         enemy_frequency = 0
 
+def powerup_frequency_setter(frequency = 50):
+    global powerup_frequency
+    if powerup_frequency % frequency == 0:
+        powerup1_pos = [random.randint(0, SCREEN_WIDTH - powerup1_rect.width), 0]
+        powerup1 = PowerUp(powerup1_img, powerup1_pos)
+        powerups.add(powerup1)
+    powerup_frequency += 1
+    if powerup_frequency >= 1000:
+        powerup_frequency = 0
+
     # if player.is_hit:
     #     if key_pressed[K_SPACE]:
     #         player.is_hit = False
@@ -122,6 +134,17 @@ while running:
             enemy_frequency_setter(33)
     else:
         enemy_frequency_setter()
+
+    # Frecuencia de aparición de power ups
+    powerup_frequency_setter()
+
+    # Mover power ups, colisión y eliminar al salir de la pantalla
+    for pup in powerups:
+        pup.move()
+        if pygame.sprite.collide_circle(pup, player):
+            powerups.remove(pup)
+        if pup.rect.top > SCREEN_HEIGHT:
+            powerups.remove(pup)
 
 
     # 移动子弹，若超出窗口范围则删除
@@ -175,9 +198,10 @@ while running:
         screen.blit(enemy_down.down_imgs[enemy_down.down_index // 2], enemy_down.rect)
         enemy_down.down_index += 1
 
-    # 绘制子弹和敌机
+    # 绘制子弹和敌机 //Dibujar las 3 cosas
     player.bullets.draw(screen)
     enemies1.draw(screen)
+    powerups.draw(screen)
 
     # 绘制得分
     score_font = pygame.font.Font(None, 36)
