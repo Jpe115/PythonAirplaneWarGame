@@ -81,3 +81,14 @@ class Enemy(pygame.sprite.Sprite):
 
     def move(self):
         self.rect.top += self.speed
+
+class PowerUp(pygame.sprite.Sprite):
+    def __init__(self, powerup_img, init_pos):
+       pygame.sprite.Sprite.__init__(self)
+       self.image = powerup_img
+       self.rect = self.image.get_rect()
+       self.rect.topleft = init_pos
+       self.speed = 3
+
+    def move(self):
+        self.rect.top += self.speed
