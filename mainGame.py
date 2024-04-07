@@ -103,7 +103,17 @@ while running:
     shoot_frequency_setter()
 
     # 生成敌机 //Velocidad de aparición de enemigos: 50, 33, 25
-    enemy_frequency_setter()
+    if (score >= 10000):
+        if (score >= 30000):
+            if (score >= 55000):
+                enemy_frequency_setter(20)
+            else:
+                enemy_frequency_setter(25)
+        else:
+            enemy_frequency_setter(33)
+    else:
+        enemy_frequency_setter()
+
 
     # 移动子弹，若超出窗口范围则删除
     for bullet in player.bullets:
