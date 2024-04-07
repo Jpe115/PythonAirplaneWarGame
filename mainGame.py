@@ -74,6 +74,7 @@ enemy_frequency = 0
 powerup_frequency = 0
 
 is_double_fire = False
+double_fire_time = 0
 
 player_down_index = 16
 
@@ -103,7 +104,7 @@ def enemy_frequency_setter(frequency = 50):
     if enemy_frequency >= 100:
         enemy_frequency = 0
 
-def powerup_frequency_setter(frequency = 50):
+def powerup_frequency_setter(frequency = 400):
     global powerup_frequency
     if powerup_frequency % frequency == 0:
         powerup1_pos = [random.randint(0, SCREEN_WIDTH - powerup1_rect.width), 0]
@@ -123,7 +124,14 @@ while running:
     clock.tick(45)
 
     # 控制发射子弹频率,并发射子弹  //Frecuencia de disparo, valor predeterminado: 15
-    shoot_frequency_setter()
+    if is_double_fire:
+        shoot_frequency_setter(7)
+        double_fire_time += 1
+        if double_fire_time >= 330:
+            double_fire_time = 0
+            is_double_fire = False
+    else: 
+        shoot_frequency_setter()
 
     # 生成敌机 //Velocidad de aparición de enemigos: 50, 33, 25
     if (score >= 10000):
@@ -137,11 +145,11 @@ while running:
     else:
         enemy_frequency_setter()
 
-    # Frecuencia de aparición de power ups
+    # Frecuencia de aparición de power ups, solo si no se tiene en uso uno igual. 400 predeterminado
     if not is_double_fire:
-        powerup_frequency_setter()
+        powerup_frequency_setter(600)
 
-    # Mover power ups, colisión y eliminar al salir de la pantalla
+    # Mover power ups, colisión y eliminar al salir de la pantalla. Activa double fire
     for pup in powerups:
         pup.move()
         if pygame.sprite.collide_circle(pup, player):
