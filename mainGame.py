@@ -125,7 +125,7 @@ while running:
 
     # 控制发射子弹频率,并发射子弹  //Frecuencia de disparo, valor predeterminado: 15
     if is_double_fire:
-        shoot_frequency_setter(7)
+        shoot_frequency_setter(6)
         double_fire_time += 1
         if double_fire_time >= 330:
             double_fire_time = 0
@@ -137,7 +137,10 @@ while running:
     if (score >= 10000):
         if (score >= 30000):
             if (score >= 55000):
-                enemy_frequency_setter(20)
+                if (score >= 115000):
+                    enemy_frequency_setter(16)
+                else:
+                    enemy_frequency_setter(20)
             else:
                 enemy_frequency_setter(25)
         else:
