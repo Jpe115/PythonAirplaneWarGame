@@ -147,7 +147,7 @@ while running:
 
     # Frecuencia de aparición de power ups, solo si no se tiene en uso uno igual. 400 predeterminado
     if not is_double_fire:
-        powerup_frequency_setter(600)
+        powerup_frequency_setter(630)
 
     # Mover power ups, colisión y eliminar al salir de la pantalla. Activa double fire
     for pup in powerups:

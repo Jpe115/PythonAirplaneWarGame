@@ -91,7 +91,7 @@ class PowerUp(pygame.sprite.Sprite):
        self.image = powerup_img
        self.rect = self.image.get_rect()
        self.rect.topleft = init_pos
-       self.speed = 3.5
+       self.speed = 3.75
 
     def move(self):
         self.rect.top += self.speed
