@@ -65,7 +65,8 @@ enemies1 = pygame.sprite.Group()
 enemies_down = pygame.sprite.Group()
 
 # PowerUps
-
+powerup1_rect = pygame.Rect(268, 399, 56, 85)
+powerup1_img = plane_img.subsurface(powerup1_rect)
 
 shoot_frequency = 0
 enemy_frequency = 0
