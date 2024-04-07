@@ -75,27 +75,35 @@ clock = pygame.time.Clock()
 
 running = True
 
-while running:
-    # 控制游戏最大帧率为60
-    clock.tick(45)
-
-    # 控制发射子弹频率,并发射子弹  //
+def shoot_frequency_setter(frequency = 15):
     if not player.is_hit:
-        if shoot_frequency % 15 == 0:
+        global shoot_frequency
+        if shoot_frequency % frequency == 0:
             bullet_sound.play()
             player.shoot(bullet_img)
         shoot_frequency += 1
-        if shoot_frequency >= 15:
+        if shoot_frequency >= frequency:
             shoot_frequency = 0
 
-    # 生成敌机 //Velocidad de aparición de enemigos: 50, 33, 25
-    if enemy_frequency % 50 == 0:
+def enemy_frequency_setter(frequency = 50):
+    global enemy_frequency
+    if enemy_frequency % frequency == 0:
         enemy1_pos = [random.randint(0, SCREEN_WIDTH - enemy1_rect.width), 0]
         enemy1 = Enemy(enemy1_img, enemy1_down_imgs, enemy1_pos)
         enemies1.add(enemy1)
     enemy_frequency += 1
     if enemy_frequency >= 100:
         enemy_frequency = 0
+
+while running:
+    # 控制游戏最大帧率为60
+    clock.tick(45)
+
+    # 控制发射子弹频率,并发射子弹  //Frecuencia de disparo, valor predeterminado: 15
+    shoot_frequency_setter()
+
+    # 生成敌机 //Velocidad de aparición de enemigos: 50, 33, 25
+    enemy_frequency_setter()
 
     # 移动子弹，若超出窗口范围则删除
     for bullet in player.bullets:
