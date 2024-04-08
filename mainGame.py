@@ -171,7 +171,7 @@ while running:
             enemy.increase_Speed()
         enemy.move()
         # 判断玩家是否被击中
-        if pygame.sprite.collide_circle(enemy, player):
+        if pygame.sprite.collide_rect(enemy, player):
             enemies_down.add(enemy)
             enemies1.remove(enemy)
             player.is_hit = True
