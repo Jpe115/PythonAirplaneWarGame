@@ -83,7 +83,10 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.top += self.speed
     
     def increase_Speed(self):
-        self.speed += 0.5
+        self.speed = 2.5
+
+    def max_Speed(self):
+        self.speed = 3
 
 class PowerUp(pygame.sprite.Sprite):
     def __init__(self, powerup_img, init_pos):
