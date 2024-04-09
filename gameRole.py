@@ -83,10 +83,13 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.top += self.speed
     
     def increase_Speed(self):
-        self.speed = 2.5
+        self.speed = 2.65
 
     def max_Speed(self):
-        self.speed = 3
+        self.speed = 3.15
+
+    def ultra_Speed(self):
+        self.speed = 4
 
 class PowerUp(pygame.sprite.Sprite):
     def __init__(self, powerup_img, init_pos):
@@ -94,7 +97,7 @@ class PowerUp(pygame.sprite.Sprite):
        self.image = powerup_img
        self.rect = self.image.get_rect()
        self.rect.topleft = init_pos
-       self.speed = 3.75
+       self.speed = 4
 
     def move(self):
         self.rect.top += self.speed

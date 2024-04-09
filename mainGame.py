@@ -169,9 +169,12 @@ while running:
     for enemy in enemies1:
         if (score >= 20000):
             if (score >= 45000):
-                enemy.increase_Speed()
+                if (score >= 100000):
+                    enemy.ultra_Speed()
+                else:
+                    enemy.max_Speed()
             else:
-                enemy.max_Speed()
+                enemy.increase_Speed()        
         enemy.move()
         # 判断玩家是否被击中
         if pygame.sprite.collide_rect(enemy, player):
