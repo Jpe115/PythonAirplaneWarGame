@@ -79,6 +79,7 @@ double_fire_time = 0
 player_down_index = 16
 
 score = 0
+lives = 3
 
 clock = pygame.time.Clock()
 
@@ -185,6 +186,9 @@ while running:
             break
         if enemy.rect.top > SCREEN_HEIGHT:
             enemies1.remove(enemy)
+            lives-=1
+            if (lives == 0):
+                player.is_hit = True
 
     # 将被击中的敌机对象添加到击毁敌机Group中，用来渲染击毁动画
     enemies1_down = pygame.sprite.groupcollide(enemies1, player.bullets, 1, 1)
@@ -231,7 +235,6 @@ while running:
     screen.blit(score_text, text_rect)
 
     # Vidas
-    lives = 3
     lives_font = pygame.font.Font(None, 36)
     lives_text = lives_font.render("Lives: " + str(lives), True, (128, 128, 128))
     lives_text_rect = lives_text.get_rect()
