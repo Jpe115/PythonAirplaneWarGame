@@ -136,7 +136,7 @@ while running:
     # 生成敌机 //Velocidad de aparición de enemigos: 50, 33, 25
     if (score >= 9000):
         if (score >= 28000):
-            if (score >= 52000):
+            if (score >= 59000):
                 enemy_frequency_setter(20)
             else:
                 enemy_frequency_setter(25)
@@ -167,8 +167,11 @@ while running:
 
     # 移动敌机，若超出窗口范围则删除
     for enemy in enemies1:
-        if (score >= 75000):
-            enemy.increase_Speed()
+        if (score >= 20000):
+            if (score >= 45000):
+                enemy.increase_Speed()
+            else:
+                enemy.max_Speed()
         enemy.move()
         # 判断玩家是否被击中
         if pygame.sprite.collide_rect(enemy, player):
