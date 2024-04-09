@@ -230,6 +230,14 @@ while running:
     text_rect.topleft = [10, 10]
     screen.blit(score_text, text_rect)
 
+    # Vidas
+    lives = 3
+    lives_font = pygame.font.Font(None, 36)
+    lives_text = lives_font.render("Lives: " + str(lives), True, (128, 128, 128))
+    lives_text_rect = lives_text.get_rect()
+    lives_text_rect.topleft = [380, 10]
+    screen.blit(lives_text, lives_text_rect)
+
     # 更新屏幕
     pygame.display.update()
 
