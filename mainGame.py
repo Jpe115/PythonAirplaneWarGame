@@ -19,9 +19,11 @@ pygame.display.set_caption('Airplane War')
 
 # 载入游戏音乐
 bullet_sound = pygame.mixer.Sound('resources/sound/bullet.wav')
+double_fire_sound = pygame.mixer.Sound('resources/sound/get_double_laser.mp3')
 enemy1_down_sound = pygame.mixer.Sound('resources/sound/enemy1_down.wav')
 game_over_sound = pygame.mixer.Sound('resources/sound/game_over.wav')
 bullet_sound.set_volume(0.3)
+double_fire_sound.set_volume(1.0)
 enemy1_down_sound.set_volume(0.3)
 game_over_sound.set_volume(0.3)
 pygame.mixer.music.load('resources/sound/game_music.wav')
@@ -150,10 +152,11 @@ while running:
     if not is_double_fire:
         powerup_frequency_setter(630)
 
-    # Mover power ups, colisión y eliminar al salir de la pantalla. Activa double fire
+    # Mover power ups, colisión y eliminar al salir de la pantalla. Activa double fire junto a su sonido
     for pup in powerups:
         pup.move()
         if pygame.sprite.collide_circle(pup, player):
+            double_fire_sound.play()
             powerups.remove(pup)
             is_double_fire = True
         if pup.rect.top > SCREEN_HEIGHT:
